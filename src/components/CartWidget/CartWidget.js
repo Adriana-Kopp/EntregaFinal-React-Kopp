@@ -1,11 +1,7 @@
-import cart from "./assets/cart.svg";
+//import cart from "./assets/cart.svg";
 
 const CartWidget = () => {
-  return (
-    <div>
-      <img src={cart} alt="cart" />0
-    </div>
-  );
+  return <div>3 🛒</div>;
 };
 
 export default CartWidget;
