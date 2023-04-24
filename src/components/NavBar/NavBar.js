@@ -10,9 +10,9 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#features">Velas aromáticas</Nav.Link>
-            <Nav.Link href="#pricing">Difusores</Nav.Link>
-            <Nav.Link href="#pricing">Inciensos</Nav.Link>
+            <Nav.Link href="/category/velas">Velas aromáticas</Nav.Link>
+            <Nav.Link href="/category/difusores">Difusores</Nav.Link>
+            <Nav.Link href="/category/Inciensos">Inciensos</Nav.Link>
           </Nav>
           <Nav>
             <CartWidget />
