@@ -1,11 +1,12 @@
 import { useInsertionEffect, useState } from "react";
 import { getProductByCategory, getProducts } from "../../asyncMock";
 import ItemList from "../ItemList/ItemList";
+import { useParams } from "react-router-dom";
 
 const ItemListContainer = ({ greeting }) => {
   const [products, setProducts] = useState([]);
 
-  const { categoryId } = URLSearchParams();
+  const { categoryId } = useParams();
 
   useInsertionEffect(() => {
     const asyncFunc = categoryId ? getProductByCategory : getProducts;

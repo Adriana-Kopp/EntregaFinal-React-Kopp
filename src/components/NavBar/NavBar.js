@@ -12,7 +12,7 @@ const NavBar = () => {
           <Nav className="me-auto">
             <Nav.Link href="/category/velas">Velas aromáticas</Nav.Link>
             <Nav.Link href="/category/difusores">Difusores</Nav.Link>
-            <Nav.Link href="/category/Inciensos">Inciensos</Nav.Link>
+            <Nav.Link href="/category/Inciensos">Piedras Energéticas</Nav.Link>
           </Nav>
           <Nav>
             <CartWidget />

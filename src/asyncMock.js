@@ -4,25 +4,25 @@ const products = [
     name: "Vela de lavanda",
     price: 380,
     category: "Velas aromáticas",
-    img: "../public/img/vela-lavanda.jpg",
+    img: "./img/vela-lavanda.jpg",
     stock: 20,
     description: "Descripción de velas de lavanda",
   },
   {
     id: "2",
-    name: "Vela de manzanilla",
-    prince: 380,
-    category: "Velas aromáticas",
-    img: "../public/img/vela-manzanilla.jpg",
+    name: "Cuarzos",
+    prince: 25,
+    category: "Piedras Energéticas",
+    img: "./img/cristales.jpg",
     stock: 20,
     description: "Descripción de velas de limón",
   },
   {
     id: "3",
-    name: "Vela de rosa",
-    prince: 380,
-    category: "Velas aromáticas",
-    img: "../public/img/vela-rosas.jpg",
+    name: "Difusor",
+    prince: 280,
+    category: "Difusores",
+    img: "./img/difusor.jpg",
     stock: 20,
     description: "Descripción de velas de rosas",
   },
@@ -40,6 +40,14 @@ export const getProductById = (productId) => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(products.find((prod) => prod.id === productId));
+    }, 500);
+  });
+};
+
+export const getProductByCategory = (productCategory) => {
+  return new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(products.find((prod) => prod.category === productCategory));
     }, 500);
   });
 };
