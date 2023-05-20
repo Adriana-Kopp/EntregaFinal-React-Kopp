@@ -14,8 +14,9 @@ const Item = ({ id, name, img, price, stock }) => {
               <p>Precio: ${price}</p>
               <p>Stock disponible: {stock}</p>
             </Card.Text>
-            <Button variant="danger">Ver detalle</Button>
-            <Link to={`/item/${id}`}></Link>
+            <Button variant="danger">
+              <Link to={`/detail/${id}`}>Ver más</Link>
+            </Button>
           </Card.Body>
         </Card>
       </div>

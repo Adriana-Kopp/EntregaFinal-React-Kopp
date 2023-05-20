@@ -1,13 +1,16 @@
 import CartWidget from "../CartWidget/CartWidget";
 import { Link } from "react-router-dom";
-import { Container, Navbar, Nav } from "react-bootstrap";
+import { Container, Navbar, Nav, NavbarBrand } from "react-bootstrap";
 
 const NavBar = () => {
   return (
     <Navbar collapseOnSelect expand="lg" bg="danger" variant="dark">
       <Container>
-        <Navbar.Brand href="#home">Arte y Mecha</Navbar.Brand>
-
+        <NavbarBrand>
+          <Link className="nav-link" to="/">
+            Arte y Mecha
+          </Link>
+        </NavbarBrand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
@@ -21,9 +24,9 @@ const NavBar = () => {
               Piedras Energéticas
             </Link>
           </Nav>
-          <Nav>
+          <Link to={"/cart"}>
             <CartWidget />
-          </Nav>
+          </Link>
         </Navbar.Collapse>
       </Container>
     </Navbar>
