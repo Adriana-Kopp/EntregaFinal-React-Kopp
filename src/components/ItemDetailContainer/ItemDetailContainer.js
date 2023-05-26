@@ -4,7 +4,8 @@ import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
 
 const ItemDetailContainer = () => {
-  const [product, setProduct] = useState(null);
+  const [product, setProduct] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { itemId } = useParams();
 
@@ -15,13 +16,12 @@ const ItemDetailContainer = () => {
       })
       .catch((Error) => {
         console.error(Error);
-      });
-  }, [itemId]);
+      })
+      .finally(() => setIsLoading(false));
+  }, []);
 
   return (
-    <div>
-      <ItemDetail {...product} />
-    </div>
+    <div>{isLoading ? <h2>Cargando...</h2> : <ItemDetail {...product} />}</div>
   );
 };
 

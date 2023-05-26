@@ -2,35 +2,30 @@ import { useState } from "react";
 import ItemCount from "../ItemCount/ItemCount";
 import { Link } from "react-router-dom";
 
-const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
-  const [quantityAdded, setQuantityAdded] = useState(0);
+const ItemDetail = () => {
+  const [isCant, setIsCant] = useState(false);
 
-  const handleOnAdd = (quantity) => {
-    setQuantityAdded(quantity);
+  const onAdd = (quantity) => {
+    console.log("cantidad agregada: ", quantity);
+    setIsCant(true);
   };
 
   return (
-    <article>
-      <header>
-        <h2>{name}</h2>
-      </header>
-      <picture>
-        <img src={img} alt={name} />
-      </picture>
-      <section>
-        <p>{category}</p>
-        <p>{description}</p>
-        <p>{id}</p>
-        <p>{price}</p>
-      </section>
-      <footer>
-        {quantityAdded > 0 ? (
-          <Link to={`/cart`}> Terminar compra </Link>
-        ) : (
-          <ItemCount initial={1} stock={stock} onAdd={handleOnAdd} />
-        )}
-      </footer>
-    </article>
+    <>
+      <div>ItemDetail</div>
+      {!isCant ? (
+        <ItemCount onAdd={onAdd} />
+      ) : (
+        <>
+          <Link to={`/cart`} className="btn btn-outline-danger">
+            Terminar compra
+          </Link>
+          <Link to={`/`} className="btn btn-outline-success">
+            Seguir comprando
+          </Link>
+        </>
+      )}
+    </>
   );
 };
 

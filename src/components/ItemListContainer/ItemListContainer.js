@@ -3,8 +3,10 @@ import { getProductByCategory, getProducts } from "../../asyncMock";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 
+//Item list container lo que hace es recibir la Api, guardarla en un estado y pasarla a Item list quien lo mapea
 const ItemListContainer = ({ greeting }) => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { categoryId } = useParams();
 
@@ -17,12 +19,16 @@ const ItemListContainer = ({ greeting }) => {
       })
       .catch((Error) => {
         console.Error(Error);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, [categoryId]);
 
-  return (
+  return isLoading ? (
+    <h2>Cargando...</h2>
+  ) : (
     <div>
       <h1>{greeting}</h1>
+
       <ItemList products={products} />
     </div>
   );

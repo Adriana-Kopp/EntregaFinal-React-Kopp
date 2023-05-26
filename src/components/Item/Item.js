@@ -1,4 +1,3 @@
-import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
@@ -14,9 +13,9 @@ const Item = ({ id, name, img, price, stock }) => {
               <p>Precio: ${price}</p>
               <p>Stock disponible: {stock}</p>
             </Card.Text>
-            <Button variant="danger">
-              <Link to={`/detail/${id}`}>Ver más</Link>
-            </Button>
+            <Link to={`/detail/${id}`} className="btn btn-outline-danger">
+              Ver más
+            </Link>
           </Card.Body>
         </Card>
       </div>

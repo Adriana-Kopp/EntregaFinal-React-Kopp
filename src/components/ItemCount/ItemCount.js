@@ -1,45 +1,24 @@
-import { useState } from "react";
 import Button from "react-bootstrap/Button";
 
-const ItemCount = ({ stock, initial, onAdd }) => {
-  const [quantity, setQuantity] = useState(initial);
+import { useCounter } from "../../hook/useCounter";
 
-  const increment = () => {
-    if (quantity < stock) {
-      setQuantity(quantity + 1);
-    }
-  };
-
-  const decrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
+const ItemCount = ({ initial = 1, stock = 10, onAdd }) => {
+  const { counter, handleAdd, handleRest } = useCounter(initial, 1, stock);
 
   return (
-    <div>
-      <div>
-        <Button variant="danger" onClick={decrement}>
-          -
-        </Button>
-        {}
-        <h4>{quantity}</h4>
-        <Button variant="danger" onClick={increment}>
-          +
-        </Button>
-        {}
-      </div>
-      <div>
-        <Button
-          variant="danger"
-          onClick={() => onAdd(quantity)}
-          disabled={!stock}
-        >
-          Agregar al carrito
-        </Button>
-        {}
-      </div>
-    </div>
+    <center>
+      <Button onClick={handleAdd}> + 1 </Button>
+      <label>{counter}</label>
+      <Button onClick={handleRest}> - 1 </Button>
+      <Button
+        onClick={() => {
+          onAdd(counter);
+        }}
+      >
+        {" "}
+        Agregar al carrito{" "}
+      </Button>
+    </center>
   );
 };
 
