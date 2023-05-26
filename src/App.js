@@ -8,11 +8,11 @@ import { CartContainer } from "./components/CartContainer/CartContainer";
 // importación de Bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { CartContext } from "./context/CartContext";
+import { CartContextProvider } from "./context/CartContext";
 
 function App() {
   return (
-    <CartContext>
+    <CartContextProvider>
       <div>
         <BrowserRouter>
           <NavBar />
@@ -29,7 +29,7 @@ function App() {
           </Routes>
         </BrowserRouter>
       </div>
-    </CartContext>
+    </CartContextProvider>
   );
 }
 
