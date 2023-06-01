@@ -1,7 +1,8 @@
+import { memo } from "react";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom";
 
-const Item = ({ id, name, img, price, stock }) => {
+const Item = memo(({ id, name, img, price, stock }) => {
   return (
     <div className="container col-md-4 p-5 justify-contend-center d-flex card-product">
       <div className="row">
@@ -21,6 +22,6 @@ const Item = ({ id, name, img, price, stock }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Item;

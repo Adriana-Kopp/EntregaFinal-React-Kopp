@@ -2,6 +2,7 @@ import { useInsertionEffect, useState } from "react";
 import { getProductByCategory, getProducts } from "../../asyncMock";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
+import Loading from "../Loading/Loading";
 
 //Item list container lo que hace es recibir la Api, guardarla en un estado y pasarla a Item list quien lo mapea
 const ItemListContainer = ({ greeting }) => {
@@ -23,14 +24,17 @@ const ItemListContainer = ({ greeting }) => {
       .finally(() => setIsLoading(false));
   }, [categoryId]);
 
-  return isLoading ? (
-    <h2>Cargando...</h2>
-  ) : (
-    <div>
-      <h1>{greeting}</h1>
-
-      <ItemList products={products} />
-    </div>
+  return (
+    <>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <div>
+          <h1>{greeting}</h1>
+          <ItemList products={products} />
+        </div>
+      )}
+    </>
   );
 };
 

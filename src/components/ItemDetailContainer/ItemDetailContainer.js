@@ -2,6 +2,7 @@ import { useInsertionEffect, useState } from "react";
 import { getProductById } from "../../asyncMock";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
+import Loading from "../Loading/Loading";
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState({});
@@ -20,9 +21,7 @@ const ItemDetailContainer = () => {
       .finally(() => setIsLoading(false));
   }, []);
 
-  return (
-    <div>{isLoading ? <h2>Cargando...</h2> : <ItemDetail {...product} />}</div>
-  );
+  return <div>{isLoading ? <Loading /> : <ItemDetail {...product} />}</div>;
 };
 
 export default ItemDetailContainer;

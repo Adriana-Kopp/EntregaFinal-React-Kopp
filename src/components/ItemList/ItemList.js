@@ -1,7 +1,8 @@
+import { memo } from "react";
 import Item from "../Item/Item";
 
-//Item list mapea
-const ItemList = ({ products }) => {
+//Item list mapea, memo me memoriza los estados y las props
+const ItemList = memo(({ products }) => {
   return (
     <div>
       {products.map((prod) => (
@@ -9,6 +10,6 @@ const ItemList = ({ products }) => {
       ))}
     </div>
   );
-};
+});
 
 export default ItemList;

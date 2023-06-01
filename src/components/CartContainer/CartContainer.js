@@ -2,10 +2,11 @@ import Button from "react-bootstrap/esm/Button";
 import { useCartContext } from "../../context/CartContext";
 
 export const CartContainer = () => {
-  const { cartList, emptyCart } = useCartContext;
+  const { cartList, emptyCart } = useCartContext();
 
   return (
     <div>
+      cd
       {cartList.map((prod) => (
         <div>
           <img src={prod.img} alt="" />
