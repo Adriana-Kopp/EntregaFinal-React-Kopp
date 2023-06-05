@@ -6,7 +6,8 @@ const products = [
     category: "Velas aromáticas",
     img: "../img/vela-lavanda.jpg",
     stock: 20,
-    description: "Descripción de velas de lavanda",
+    description:
+      "Relajante, elimina la ansiedad y el estrés, ayuda a despejar las mentes cansadas. Muy utilizado a la hora de preparar exámenes.",
   },
   {
     id: "2",
@@ -15,7 +16,8 @@ const products = [
     category: "Piedras Energéticas",
     img: "../img/cristales.jpg",
     stock: 20,
-    description: "Descripción de velas de limón",
+    description:
+      "Su poder nos permite deshacernos de la negatividad, se usa para combatir el estrés y el cansancio",
   },
   {
     id: "3",
@@ -24,7 +26,8 @@ const products = [
     category: "Difusores",
     img: "../img/difusor.jpg",
     stock: 20,
-    description: "Descripción de velas de rosas",
+    description:
+      "Es un sencillo y pequeño dispositivo, con la capacidad de difundir la fragancia elegida mediante la acción automática y programada del propio aerosol.",
   },
   {
     id: "4",
@@ -33,7 +36,8 @@ const products = [
     category: "Difusores",
     img: "../img/difusor-automatic.jpg",
     stock: 20,
-    description: "Descripción de velas de rosas",
+    description:
+      "Es un sencillo y pequeño dispositivo, con la capacidad de difundir la fragancia elegida mediante la acción automática y programada del propio aerosol.",
   },
   {
     id: "5",
@@ -42,7 +46,8 @@ const products = [
     category: "Difusores",
     img: "../img/difusor-3.jpg",
     stock: 20,
-    description: "Descripción de difusor de varillas de algodón",
+    description:
+      "Aporta una sensación de pureza en el ambiente, consiguiendo así un efecto relajante y un espacio de lo más acogedor.",
   },
   {
     id: "6",
@@ -51,7 +56,8 @@ const products = [
     category: "Difusores",
     img: "../img/difusor-4.jpg",
     stock: 20,
-    description: "Descripción de difusor de varillas de coco",
+    description:
+      "Es la forma perfecta de agregar un toque tropical y relajante a tu hogar u oficina. Crean un ambiente agradable y reconfortante. ",
   },
   {
     id: "7",
@@ -60,7 +66,8 @@ const products = [
     category: "Velas aromáticas",
     img: "../img/vela-manzanilla.jpg",
     stock: 20,
-    description: "Descripción de velas de manzanilla",
+    description:
+      "Posee efectos calmantes y terapéuticos, junto con su capacidad de apoyar y mejorar el sistema inmunológico.",
   },
   {
     id: "8",
@@ -69,7 +76,8 @@ const products = [
     category: "Velas aromáticas",
     img: "../img/vela-citric.jpg",
     stock: 20,
-    description: "Descripción de velas de citric",
+    description:
+      "Perfuma tu hogar, convierte tu hogar un espacio de relax y una vez fundida podés utilizarla para realizar masajes.",
   },
   {
     id: "9",
@@ -78,7 +86,8 @@ const products = [
     category: "Velas aromáticas",
     img: "../img/vela-honney.jpg",
     stock: 20,
-    description: "Descripción de velas de miel",
+    description:
+      "Producto vinculado a la luz y la purez. Perfectas para crear un ambiente íntimo, tranquilo y lleno de espiritualidad. ",
   },
   {
     id: "10",
@@ -87,7 +96,8 @@ const products = [
     category: "Piedras Energéticas",
     img: "../img/amatista.jpg",
     stock: 20,
-    description: "Descripción de velas de limón",
+    description:
+      "La amatista nos aporta serenidad emocional, sentido común, potencia la motivación y la memoria. ",
   },
 
   {
@@ -97,7 +107,8 @@ const products = [
     category: "Piedras Energéticas",
     img: "../img/cristal.jpg",
     stock: 20,
-    description: "Descripción de cristal",
+    description:
+      "Podemos programar los cristales y así amplificar, transferir pensamientos curativos, y activar los “centros energéticos” (chakras) del cuerpo.",
   },
   {
     id: "12",
@@ -106,7 +117,8 @@ const products = [
     category: "Piedras Energéticas",
     img: "../img/cuarzo-rosa.jpg",
     stock: 20,
-    description: "Descripción de cuarzo rosa",
+    description:
+      "Es utilizado para curar heridas emocionales, atraer nuevos amores, romances e intimidad, además de generar relaciones cercanas y profundas con la persona a quien se le regala.",
   },
   {
     id: "13",
@@ -115,7 +127,8 @@ const products = [
     category: "Piedras Energéticas",
     img: "../img/cuarzo-azul.jpg",
     stock: 20,
-    description: "Descripción de cuarzo azul",
+    description:
+      "Simboliza la concentración, la tranquilidad y la calma. Ideal para disminuir el estrés y llevar un mejor control de las emociones.",
   },
 ];
 

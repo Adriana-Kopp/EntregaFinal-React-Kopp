@@ -5,8 +5,15 @@ import Item from "../Item/Item";
 const ItemList = memo(({ products }) => {
   return (
     <div>
-      {products.map((prod) => (
-        <Item key={prod.id} {...prod} />
+      {products.map(({ id, img, name, price, category }) => (
+        <Item
+          key={id}
+          id={id}
+          img={img}
+          name={name}
+          price={price}
+          category={category}
+        />
       ))}
     </div>
   );

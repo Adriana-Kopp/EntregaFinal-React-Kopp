@@ -1,8 +1,15 @@
-import { useInsertionEffect, useState } from "react";
+import { useEffect, useInsertionEffect, useState } from "react";
 import { getProductByCategory, getProducts } from "../../asyncMock";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
+import {
+  collection,
+  getDocs,
+  getFirestore,
+  query,
+  where,
+} from "firebase/firestore";
 
 //Item list container lo que hace es recibir la Api, guardarla en un estado y pasarla a Item list quien lo mapea
 const ItemListContainer = ({ greeting }) => {
@@ -11,17 +18,35 @@ const ItemListContainer = ({ greeting }) => {
 
   const { categoryId } = useParams();
 
-  useInsertionEffect(() => {
-    const asyncFunc = categoryId ? getProductByCategory : getProducts;
+  //aca tengo que reemplazar el nuevo filtrado
+  useEffect(() => {
+    const dbFirestore = getFirestore();
+    const queryCollection = collection(dbFirestore, "products");
 
-    asyncFunc(categoryId)
-      .then((Response) => {
-        setProducts(Response);
-      })
-      .catch((Error) => {
-        console.Error(Error);
-      })
-      .finally(() => setIsLoading(false));
+    if (!categoryId) {
+      getDocs(queryCollection)
+        .then((res) =>
+          setProducts(
+            res.docs.map((product) => ({ id: product.id, ...product.data() }))
+          )
+        )
+        .catch((error) => console.log(error))
+        .finally(() => setIsLoading(false));
+    } else {
+      const queryCollectionFiltered = query(
+        queryCollection,
+        where("category", "==", categoryId)
+      );
+
+      getDocs(queryCollectionFiltered)
+        .then((res) =>
+          setProducts(
+            res.docs.map((product) => ({ id: product.id, ...product.data() }))
+          )
+        )
+        .catch((error) => console.log(error))
+        .finally(() => setIsLoading(false));
+    }
   }, [categoryId]);
 
   return (
