@@ -8,8 +8,31 @@ export const CartContextProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
 
   const addCart = (newProduct) => {
-    setCartList([...cartList, newProduct]);
+    //logica de los productos repetidos agregados
+    const noRepeat = cartList.findIndex((prod) => newProduct.id == prod.id);
+
+    if (noRepeat == -1) {
+      setCartList([...cartList, newProduct]);
+    } else {
+      cartList[noRepeat].cantidad += newProduct.cantidad;
+      setCartList([...cartList]);
+    }
   };
+
+  //Cantidad total de productos
+  const totalProducts = () =>
+    cartList.reduce((total, objProd) => (total += objProd.cantidad), 0);
+
+  //Precio total
+  const totalPrice = () =>
+    cartList.reduce(
+      (total, objProduct) => (total += objProduct.cantidad * objProduct.price),
+      0
+    );
+
+  //Eliminar productos
+  const deletProducts = (itemId) =>
+    cartList.filter((prod) => prod.id != itemId);
 
   //Vaciar carrito
   const emptyCart = () => {
@@ -22,6 +45,9 @@ export const CartContextProvider = ({ children }) => {
         cartList,
         addCart,
         emptyCart,
+        totalPrice,
+        totalProducts,
+        deletProducts,
       }}
     >
       {children}

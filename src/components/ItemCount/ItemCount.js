@@ -15,8 +15,7 @@ const ItemCount = ({ initial = 1, stock = 10, onAdd }) => {
           onAdd(counter);
         }}
       >
-        {" "}
-        Agregar al carrito{" "}
+        Agregar al carrito
       </Button>
     </center>
   );
