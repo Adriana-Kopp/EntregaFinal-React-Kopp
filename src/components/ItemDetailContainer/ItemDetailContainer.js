@@ -17,30 +17,30 @@ const ItemDetailContainer = () => {
   const [isLoading, setIsLoading] = useState(true);
   const { itemId } = useParams();
 
-  //useEffect(() => {
-  // const dbFirestore = getFirestore();
-  //const queryDoc = doc(dbFirestore, "products", itemId);
-
-  //getDoc(queryDoc)
-  // .then((resp) => setProduct({ id: resp.id, ...resp.data() }))
-  //.catch((err) => console.log(err))
-  // .finally(() => setIsLoading(false));
-  // }, []);
-
-  //traemos todos los productos
   useEffect(() => {
     const dbFirestore = getFirestore();
-    const queryCollection = collection(dbFirestore, "products");
+    const queryDoc = doc(dbFirestore, "products", itemId);
 
-    getDocs(queryCollection)
-      .then((res) =>
-        setProducts(
-          res.docs.map((product) => ({ id: product.id, ...product.data() }))
-        )
-      )
+    getDoc(queryDoc)
+      .then((resp) => setProduct({ id: resp.id, ...resp.data() }))
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }, []);
+
+  //traemos todos los productos
+  // useEffect(() => {
+  // const dbFirestore = getFirestore();
+  // const queryCollection = collection(dbFirestore, "products");
+
+  // getDocs(queryCollection)
+  //   .then((res) =>
+  //    setProducts(
+  //     res.docs.map((product) => ({ id: product.id, ...product.data() }))
+  //   )
+  //  )
+  // .catch((err) => console.log(err))
+  // .finally(() => setIsLoading(false));
+  //}, []);
 
   return <div>{isLoading ? <Loading /> : <ItemDetail {...product} />}</div>;
 };
