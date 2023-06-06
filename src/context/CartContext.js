@@ -31,8 +31,9 @@ export const CartContextProvider = ({ children }) => {
     );
 
   //Eliminar productos
-  const deletProducts = (itemId) =>
-    cartList.filter((prod) => prod.id != itemId);
+  const deletProducts = (itemId) => {
+    setCartList(cartList.filter((prod) => prod.id != itemId));
+  };
 
   //Vaciar carrito
   const emptyCart = () => {
