@@ -19,11 +19,11 @@ export const CartContainer = () => {
 
     const order = {};
     order.buyer = dataForm;
-    order.items = cartList.map(({ name, id, price, cantidad }) => ({
+    order.items = cartList.map(({ name, id, price, quantity }) => ({
       id,
       name,
       price,
-      cantidad,
+      quantity,
     }));
     order.total = totalPrice();
 
@@ -63,11 +63,11 @@ export const CartContainer = () => {
       {cartList.length != 0 ? (
         <>
           {cartList.map((prod) => (
-            <div>
+            <div key={prod.id}>
               <img src={prod.img} alt="" />
               <label>
                 Precio: ${prod.price}
-                Cantidad: {prod.cantidad}
+                Cantidad: {prod.quantity}
               </label>
               <Button onClick={() => deletProducts(prod.id)}> X </Button>
             </div>

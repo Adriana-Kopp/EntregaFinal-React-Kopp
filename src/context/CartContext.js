@@ -14,19 +14,19 @@ export const CartContextProvider = ({ children }) => {
     if (noRepeat == -1) {
       setCartList([...cartList, newProduct]);
     } else {
-      cartList[noRepeat].cantidad += newProduct.cantidad;
+      cartList[noRepeat].quantity += newProduct.quantity;
       setCartList([...cartList]);
     }
   };
 
   //Cantidad total de productos
   const totalProducts = () =>
-    cartList.reduce((total, objProd) => (total += objProd.cantidad), 0);
+    cartList.reduce((total, objProd) => (total += objProd.quantity), 0);
 
   //Precio total
   const totalPrice = () =>
     cartList.reduce(
-      (total, objProduct) => (total += objProduct.cantidad * objProduct.price),
+      (total, objProduct) => (total += objProduct.quantity * objProduct.price),
       0
     );
 

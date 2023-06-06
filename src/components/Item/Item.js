@@ -10,7 +10,7 @@ const Item = memo(({ id, name, img, price, stock }) => {
           <Card.Img variant="top" src={img} className="img-fluid" />
           <Card.Body>
             <Card.Title>{name}</Card.Title>
-            <Card.Text>
+            <Card.Text as="div">
               <p>Precio: ${price}</p>
               <p>Stock disponible: {stock}</p>
             </Card.Text>
