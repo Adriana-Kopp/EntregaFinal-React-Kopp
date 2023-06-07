@@ -5,6 +5,7 @@
 [![N|Solid](https://www.datocms-assets.com/45470/1631110818-logo-react-js.png)](https://nodesource.com/products/nsolid)
 
 Puedes ver el demo de la app en:
+`https://6480dceeb3dfa83302f55123--dapper-mandazi-c95ea3.netlify.app/`
 
 ## ¿Quienes somos?
 
