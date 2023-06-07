@@ -116,7 +116,7 @@ export const CartContainer = () => {
                     <Card.Header>Agregó a su carrito:</Card.Header>
                     <CardImg src={prod.img} />
                     <Card.Body>
-                      <Card.Title>{prod.name}</Card.Title>
+                      <h2>{prod.name}</h2>
                       <Card.Subtitle mb="2" text="muted">
                         Precio: ${prod.price}
                       </Card.Subtitle>
