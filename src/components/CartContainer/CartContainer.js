@@ -3,11 +3,12 @@ import { useCartContext } from "../../context/CartContext";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import Alert from "react-bootstrap/Alert";
+import Toast from "react-bootstrap/Toast";
 import Button from "react-bootstrap/esm/Button";
 import Card from "react-bootstrap/Card";
 import CardImg from "react-bootstrap/esm/CardImg";
 import Form from "react-bootstrap/Form";
-import FormLabel from "react-bootstrap/esm/FormLabel";
+import Carousel from "react-bootstrap/Carousel";
 
 export const CartContainer = () => {
   const [id, setId] = useState("");
@@ -47,7 +48,7 @@ export const CartContainer = () => {
         setTimeout(() => {
           emptyCart();
           setId("");
-        }, 5000);
+        }, 8000);
       });
   };
 
@@ -63,9 +64,27 @@ export const CartContainer = () => {
   return (
     <div>
       {id.length !== 0 && (
-        <Alert variant="success">
-          <h6>El número de ID de la orden de la compra es: {id}</h6>
-        </Alert>
+        <>
+          {["Danger"].map((variant, idx) => (
+            <Toast
+              className="d-inline-block m-1"
+              bg={variant.toLowerCase()}
+              key={idx}
+            >
+              <Toast.Header>
+                <img
+                  src="holder.js/20x20?text=%20"
+                  className="rounded me-2"
+                  alt=""
+                />
+                <strong className="me-auto">Información Importante</strong>
+              </Toast.Header>
+              <Toast.Body className={variant === "Dark" && "text-white"}>
+                El número de ID de la orden de la compra es: {id}
+              </Toast.Body>
+            </Toast>
+          ))}
+        </>
       )}
 
       {cartList.length != 0 ? (
@@ -105,13 +124,37 @@ export const CartContainer = () => {
               Total de la compra: ${totalPrice()}
             </Button>
           </div>
-
+          <Carousel slide={false}>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="../img/carrusel1.png"
+                alt="arte y mecha"
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="../img/carrusel2.png"
+                alt="arte y mecha"
+              />
+            </Carousel.Item>
+            <Carousel.Item>
+              <img
+                className="d-block w-100"
+                src="../img/carrusel3.png"
+                alt="arte y mecha"
+              />
+            </Carousel.Item>
+          </Carousel>
+          <div></div>
           <div className="col-md-4">
             <Form onSubmit={generateOrder} p-5>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
                   type="text"
+                  name="name"
                   placeholder="Ingrese su nombre"
                   onChange={handleOnChange}
                   value={dataForm.name}
@@ -121,6 +164,7 @@ export const CartContainer = () => {
                 <Form.Label>Número de teléfono</Form.Label>
                 <Form.Control
                   type="text"
+                  name="phone"
                   placeholder="Ingrese su número de teléfono"
                   onChange={handleOnChange}
                   value={dataForm.phone}
@@ -130,6 +174,7 @@ export const CartContainer = () => {
                 <Form.Label>Ingrese su email</Form.Label>
                 <Form.Control
                   type="text"
+                  name="email"
                   placeholder="Ingrese su email"
                   onChange={handleOnChange}
                   value={dataForm.email}
