@@ -1,9 +1,13 @@
 import { addDoc, collection, getFirestore } from "firebase/firestore";
-import Button from "react-bootstrap/esm/Button";
 import { useCartContext } from "../../context/CartContext";
 import { useState } from "react";
-import Alert from "react-bootstrap/Alert";
 import { Link } from "react-router-dom";
+import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/esm/Button";
+import Card from "react-bootstrap/Card";
+import CardImg from "react-bootstrap/esm/CardImg";
+import Form from "react-bootstrap/Form";
+import FormLabel from "react-bootstrap/esm/FormLabel";
 
 export const CartContainer = () => {
   const [id, setId] = useState("");
@@ -66,48 +70,74 @@ export const CartContainer = () => {
 
       {cartList.length != 0 ? (
         <>
-          {cartList.map((prod) => (
-            <div key={prod.id}>
-              <img src={prod.img} alt="" />
-              <label>
-                Precio: ${prod.price}
-                Cantidad: {prod.quantity}
-              </label>
-              <Button onClick={() => deletProducts(prod.id)}> X </Button>
+          <div className="container col-md-4 p-5 justify-contend-center d-flex card-product">
+            <div className="row">
+              {cartList.map((prod) => (
+                <Card style={{ width: "18rem" }}>
+                  <div key={prod.id} className="row">
+                    <Card.Header>Agregó a su carrito:</Card.Header>
+                    <CardImg src={prod.img} />
+                    <Card.Body>
+                      <Card.Title>{prod.name}</Card.Title>
+                      <Card.Subtitle mb="2" text="muted">
+                        Precio: ${prod.price}
+                      </Card.Subtitle>
+                      <Card.Text>Cantidad: {prod.quantity}</Card.Text>
+                      <Button
+                        onClick={() => deletProducts(prod.id)}
+                        className="btn btn-danger"
+                      >
+                        {" "}
+                        Eliminar producto{" "}
+                      </Button>
+                    </Card.Body>
+                  </div>
+                </Card>
+              ))}
             </div>
-          ))}
+          </div>
 
-          <h3>Total de la compra: ${totalPrice()}</h3>
+          <div className="row">
+            <Button variant="outline-danger" onClick={emptyCart}>
+              Limpiar carrito
+            </Button>
+            <Button variant="success">
+              Total de la compra: ${totalPrice()}
+            </Button>
+          </div>
 
-          <Button onClick={emptyCart} className="btn btn-danger">
-            Limpiar carrito
-          </Button>
-
-          <form onSubmit={generateOrder}>
-            <input
-              type="text"
-              name="name"
-              onChange={handleOnChange}
-              value={dataForm.name}
-              placeholder="Ingrese su nombre"
-            />
-            <input
-              type="text"
-              name="phone"
-              onChange={handleOnChange}
-              value={dataForm.phone}
-              placeholder="Ingrese su numero de teléfono"
-            />
-            <input
-              type="text"
-              name="email"
-              onChange={handleOnChange}
-              value={dataForm.email}
-              placeholder="Ingrese su correo electrónico"
-            />
-
-            <button className="btn btn-outline-danger">Generar orden</button>
-          </form>
+          <div className="col-md-4">
+            <Form onSubmit={generateOrder} p-5>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Nombre</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ingrese su nombre"
+                  onChange={handleOnChange}
+                  value={dataForm.name}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Número de teléfono</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ingrese su número de teléfono"
+                  onChange={handleOnChange}
+                  value={dataForm.phone}
+                />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Ingrese su email</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="Ingrese su email"
+                  onChange={handleOnChange}
+                  value={dataForm.email}
+                />
+              </Form.Group>
+              <button className="btn btn-outline-danger">Generar orden</button>
+            </Form>
+          </div>
         </>
       ) : (
         <div>
