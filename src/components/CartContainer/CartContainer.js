@@ -109,7 +109,7 @@ export const CartContainer = () => {
 
       {cartList.length !== 0 ? (
         <>
-          <div className="container col-md-4 p-5 justify-contend-center d-flex">
+          <div className="container col-md-4 justify-contend-center d-flex">
             <div className="row">
               {cartList.map((prod) => (
                 <Card style={{ width: "18rem" }}>
@@ -135,14 +135,13 @@ export const CartContainer = () => {
               ))}
             </div>
             <div className="justify-contend-center">
-              <Button variant="outline-danger" onClick={emptyCart} fluid>
+              <Button variant="outline-danger" onClick={emptyCart}>
                 Limpiar carrito
               </Button>
             </div>
           </div>
 
           <ListGroup.Item variant="success">
-            {" "}
             Total de la compra: ${totalPrice()}
           </ListGroup.Item>
 
@@ -171,7 +170,7 @@ export const CartContainer = () => {
           </Carousel>
 
           <div className="col-md-4">
-            <Form onSubmit={generateOrder} p-5>
+            <Form onSubmit={generateOrder}>
               <Form.Text>
                 Complete el formulario para terminar su compra
               </Form.Text>
