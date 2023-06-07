@@ -11,7 +11,7 @@ Puedes ver el demo de la app en:
 
 - "Arte y Mecha" es un espacio donde encontrarán todo tipo de artículos relacionados a la aromaterapia. Nuestro objetivo es producir y comercializar velas aromáticas orientándonos a satisfacer las necesidades de nuestros clientes con innovación y creatividad, dando como resultado una amplia gama de productos. Queremos proveer al mercado velas decorativas con modelos innovadores. Con aromas únicos y de alta calidad, ofrecemos a nuestros clientes un precio justo para satisfacer sus deseos más exigentes.
 
-[![N|Solid](./public/img/Arte.png)
+![N|Solid](./public/img/Arte.png)
 
 ## Para mejorar la experiencia de usuario utilicé:
 
