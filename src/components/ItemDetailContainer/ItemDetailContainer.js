@@ -1,19 +1,11 @@
-import { useEffect, useInsertionEffect, useState } from "react";
-import { getProductById } from "../../asyncMock";
+import { useEffect, useState } from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
-import {
-  collection,
-  doc,
-  getDoc,
-  getDocs,
-  getFirestore,
-} from "firebase/firestore";
+import { doc, getDoc, getFirestore } from "firebase/firestore";
 
 const ItemDetailContainer = () => {
   const [product, setProduct] = useState({});
-  const [products, setProducts] = useState({});
   const [isLoading, setIsLoading] = useState(true);
   const { itemId } = useParams();
 
@@ -26,21 +18,6 @@ const ItemDetailContainer = () => {
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
   }, []);
-
-  //traemos todos los productos
-  // useEffect(() => {
-  // const dbFirestore = getFirestore();
-  // const queryCollection = collection(dbFirestore, "products");
-
-  // getDocs(queryCollection)
-  //   .then((res) =>
-  //    setProducts(
-  //     res.docs.map((product) => ({ id: product.id, ...product.data() }))
-  //   )
-  //  )
-  // .catch((err) => console.log(err))
-  // .finally(() => setIsLoading(false));
-  //}, []);
 
   return <div>{isLoading ? <Loading /> : <ItemDetail {...product} />}</div>;
 };

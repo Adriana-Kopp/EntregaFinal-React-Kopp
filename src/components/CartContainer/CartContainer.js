@@ -2,6 +2,7 @@ import { addDoc, collection, getFirestore } from "firebase/firestore";
 import Button from "react-bootstrap/esm/Button";
 import { useCartContext } from "../../context/CartContext";
 import { useState } from "react";
+import Alert from "react-bootstrap/Alert";
 import { Link } from "react-router-dom";
 
 export const CartContainer = () => {
@@ -31,7 +32,7 @@ export const CartContainer = () => {
     const ordersCollection = collection(dbFirestore, "orders");
 
     addDoc(ordersCollection, order)
-      .then((resp) => console.log(resp.id))
+      .then((resp) => setId(resp.id))
       .catch((err) => console.log(err))
       .finally(() => {
         setDataForm({
@@ -57,9 +58,12 @@ export const CartContainer = () => {
 
   return (
     <div>
-      {id.length != 0 && (
-        <h6>El número de ID de la orden de la compra es: {id}</h6>
+      {id.length !== 0 && (
+        <Alert variant="success">
+          <h6>El número de ID de la orden de la compra es: {id}</h6>
+        </Alert>
       )}
+
       {cartList.length != 0 ? (
         <>
           {cartList.map((prod) => (
@@ -107,8 +111,16 @@ export const CartContainer = () => {
         </>
       ) : (
         <div>
-          <h4> No hay productos en el carrito </h4>
-          <Link to="/">Seguir comprando </Link>
+          <>
+            {["warning"].map((variant) => (
+              <Alert key={variant} variant={variant}>
+                El carrito de compras se encuentra vacio.{" "}
+                <Link to={"/"}>
+                  <Alert.Link href="/">Ver más productos</Alert.Link>
+                </Link>
+              </Alert>
+            ))}
+          </>
         </div>
       )}
     </div>

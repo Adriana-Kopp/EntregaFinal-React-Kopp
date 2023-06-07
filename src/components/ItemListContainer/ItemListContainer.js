@@ -1,5 +1,4 @@
 import { useEffect, useInsertionEffect, useState } from "react";
-import { getProductByCategory, getProducts } from "../../asyncMock";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import Loading from "../Loading/Loading";
