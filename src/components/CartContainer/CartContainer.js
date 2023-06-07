@@ -12,16 +12,25 @@ import Carousel from "react-bootstrap/Carousel";
 
 export const CartContainer = () => {
   const [id, setId] = useState("");
+  const [completeForm, setCompleteForm] = useState(false);
   const [dataForm, setDataForm] = useState({
     name: "",
     phone: "",
     email: "",
   });
 
+  const [emailError, setEmailError] = useState(false);
   const { cartList, emptyCart, totalPrice, deletProducts } = useCartContext();
 
+  //Generamos la orden
   const generateOrder = (evt) => {
     evt.preventDefault();
+
+    //validamos los email
+    if (dataForm.email !== dataForm.validEmail) {
+      setEmailError(true);
+      return;
+    }
 
     const order = {};
     order.buyer = dataForm;
@@ -36,15 +45,18 @@ export const CartContainer = () => {
     const dbFirestore = getFirestore();
     const ordersCollection = collection(dbFirestore, "orders");
 
+    //Guardamos la orden en Firebase
     addDoc(ordersCollection, order)
-      .then((resp) => setId(resp.id))
+      .then(
+        (resp) => setId(resp.id),
+        setDataForm({
+          name: dataForm.name,
+          phone: dataForm.phone,
+          email: dataForm.email,
+        })
+      )
       .catch((err) => console.log(err))
       .finally(() => {
-        setDataForm({
-          name: "",
-          phone: "",
-          email: "",
-        });
         setTimeout(() => {
           emptyCart();
           setId("");
@@ -53,12 +65,19 @@ export const CartContainer = () => {
   };
 
   const handleOnChange = (evt) => {
-    console.log("nombre del input", evt.target.name);
-    console.log("valor del input", evt.target.value);
     setDataForm({
       ...dataForm,
       [evt.target.name]: evt.target.value,
     });
+    if (evt.target.name === "email" || evt.target.name === "validEmail") {
+      setEmailError(false);
+    }
+    setCompleteForm(
+      Object.values({
+        ...dataForm,
+        [evt.target.name]: evt.target.value,
+      }).every((value) => value !== "")
+    );
   };
 
   return (
@@ -147,9 +166,12 @@ export const CartContainer = () => {
               />
             </Carousel.Item>
           </Carousel>
-          <div></div>
+
           <div className="col-md-4">
             <Form onSubmit={generateOrder} p-5>
+              <Form.Titel>
+                Complete el formulario para terminar su compra
+              </Form.Titel>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
@@ -171,7 +193,7 @@ export const CartContainer = () => {
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicEmail">
-                <Form.Label>Ingrese su email</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <Form.Control
                   type="text"
                   name="email"
@@ -180,6 +202,17 @@ export const CartContainer = () => {
                   value={dataForm.email}
                 />
               </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicEmail">
+                <Form.Label>Validar Email</Form.Label>
+                <Form.Control
+                  type="text"
+                  name="validEmail"
+                  placeholder="Ingrese su email otra vez"
+                  onChange={handleOnChange}
+                  value={dataForm.validEmail}
+                />
+              </Form.Group>
+              {emailError && <p>El email no es valido</p>}
               <button className="btn btn-outline-danger">Generar orden</button>
             </Form>
           </div>
