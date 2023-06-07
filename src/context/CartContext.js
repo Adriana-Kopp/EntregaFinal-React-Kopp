@@ -9,9 +9,9 @@ export const CartContextProvider = ({ children }) => {
 
   const addCart = (newProduct) => {
     //logica de los productos repetidos agregados
-    const noRepeat = cartList.findIndex((prod) => newProduct.id == prod.id);
+    const noRepeat = cartList.findIndex((prod) => newProduct.id === prod.id);
 
-    if (noRepeat == -1) {
+    if (noRepeat === -1) {
       setCartList([...cartList, newProduct]);
     } else {
       cartList[noRepeat].quantity += newProduct.quantity;
@@ -32,7 +32,7 @@ export const CartContextProvider = ({ children }) => {
 
   //Eliminar productos
   const deletProducts = (itemId) => {
-    setCartList(cartList.filter((prod) => prod.id != itemId));
+    setCartList(cartList.filter((prod) => prod.id !== itemId));
   };
 
   //Vaciar carrito

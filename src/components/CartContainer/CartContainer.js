@@ -9,6 +9,7 @@ import Card from "react-bootstrap/Card";
 import CardImg from "react-bootstrap/esm/CardImg";
 import Form from "react-bootstrap/Form";
 import Carousel from "react-bootstrap/Carousel";
+import ListGroup from "react-bootstrap/ListGroup";
 
 export const CartContainer = () => {
   const [id, setId] = useState("");
@@ -106,9 +107,9 @@ export const CartContainer = () => {
         </>
       )}
 
-      {cartList.length != 0 ? (
+      {cartList.length !== 0 ? (
         <>
-          <div className="container col-md-4 p-5 justify-contend-center d-flex card-product">
+          <div className="container col-md-4 p-5 justify-contend-center d-flex">
             <div className="row">
               {cartList.map((prod) => (
                 <Card style={{ width: "18rem" }}>
@@ -133,16 +134,18 @@ export const CartContainer = () => {
                 </Card>
               ))}
             </div>
+            <div className="justify-contend-center">
+              <Button variant="outline-danger" onClick={emptyCart} fluid>
+                Limpiar carrito
+              </Button>
+            </div>
           </div>
 
-          <div className="row">
-            <Button variant="outline-danger" onClick={emptyCart}>
-              Limpiar carrito
-            </Button>
-            <Button variant="success">
-              Total de la compra: ${totalPrice()}
-            </Button>
-          </div>
+          <ListGroup.Item variant="success">
+            {" "}
+            Total de la compra: ${totalPrice()}
+          </ListGroup.Item>
+
           <Carousel slide={false}>
             <Carousel.Item>
               <img
@@ -169,9 +172,9 @@ export const CartContainer = () => {
 
           <div className="col-md-4">
             <Form onSubmit={generateOrder} p-5>
-              <Form.Titel>
+              <Form.Text>
                 Complete el formulario para terminar su compra
-              </Form.Titel>
+              </Form.Text>
               <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Nombre</Form.Label>
                 <Form.Control
@@ -213,7 +216,12 @@ export const CartContainer = () => {
                 />
               </Form.Group>
               {emailError && <p>El email no es valido</p>}
-              <button className="btn btn-outline-danger">Generar orden</button>
+              <button
+                className="btn btn-outline-danger"
+                disabled={!completeForm}
+              >
+                Generar orden
+              </button>
             </Form>
           </div>
         </>
